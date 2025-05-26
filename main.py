@@ -34,18 +34,18 @@ def main():
                
         screen.fill("black")
 
+        for object in asteroids:
+            for shot in shots:
+                if object.check_collision(shot):
+                    object.split()
+                    shot.kill()        
+
         for object in updatable:
             object.update(dt)
  
         for object in drawable:
             object.draw(screen)
         pygame.display.flip()
-
-        for object in asteroids:
-            for shot in shots:
-                if object.check_collision(shot):
-                    object.kill()
-                    shot.kill()
 
         for object in asteroids:
             if object.check_collision(player):
